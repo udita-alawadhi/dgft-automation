@@ -75,9 +75,7 @@ if n==2:
     driver.close()
 else:
     for x in range(2, n):
-
- 	fillform(x)
-    
+        fillform(x)
     print('done')
     wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
     win32api.MessageBox(0, 'The script was implemented successfully', 'Success')
