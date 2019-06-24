@@ -62,7 +62,7 @@ def fillform(i):
 
     subprocess.call(sheet2['K2'].value+"\\autoitsave.exe")
     print("going ahead")
-    keyboard.type(pathvalue+sheet['C'+str(i)].value)
+    keyboard.type(pathvalue+"\\"+ sheet['C'+str(i)].value)
     time.sleep(0.5)
     print("going ahead= saved?")
     subprocess.call(sheet2['K2'].value+"\\autoitsave2.exe")
