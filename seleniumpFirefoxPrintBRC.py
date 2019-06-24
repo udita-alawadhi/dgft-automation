@@ -6,8 +6,6 @@ from selenium import webdriver
 from pynput.keyboard import Key, Controller
 import subprocess
 #Make sure to install all the libraries before running the program
-
-
 wb = openpyxl.load_workbook('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
 sheet = wb['Sheet1']
 sheet2 = wb['Sheet2']
@@ -63,7 +61,6 @@ def fillform(i):
     print("going ahead=closed")
     eleback = driver.find_element_by_link_text('Modify Query')
     eleback.click()
-
     sheet['F'+str(i)] = "done"
     wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
 
