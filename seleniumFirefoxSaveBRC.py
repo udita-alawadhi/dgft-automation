@@ -1,25 +1,22 @@
-###This program is for saving/downloading BRC details from the DGFT website.
+#This program is for Saving/Downloading the BRC details document from the DGFT website
 
 import openpyxl, time, easygui, win32api
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 from pynput.keyboard import Key, Controller
 import subprocess
-#these libraries need to be installed before running the program
 
-
-wb = openpyxl.load_workbook('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
+wb = openpyxl.load_workbook('C:\\Users\\DELL\\Desktop\\Final BRC\\seleniumtesting.xlsx')
 sheet = wb['Sheet1']
-#location of the file 'seleniumtesting.xlsx' should be maintained correctly with "//" instead of single "/"
+sheet2 = wb['Sheet2']
 
 row_count = sheet.max_row
 
 n = row_count + 1
 print(n)
 
-
 keyboard = Controller()
-driver = webdriver.Firefox(executable_path="C:\\Users\\DELL\\Downloads\\geckodriver-v0.24.0-win64\\geckodriver.exe")
+driver = webdriver.Firefox(executable_path=(sheet2['K3'].value+"\\geckodriver.exe"))
 #driver.get('http://dgftebrc.nic.in:8100/BRCQueryTrade/index.jsp')
 
 
@@ -54,19 +51,18 @@ def fillform(i):
 
     #windowAfter = driver.window_handles[1]
     #driver.switch_to_window(windowAfter)
-	
-    #make sure the file location of autoIT's application file are correct.
-    subprocess.call("C:\\Users\\DELL\\Desktop\\autoitsave.exe")
+
+    subprocess.call(sheet2['K2'].value+"\\autoitsave.exe")
     print("going ahead")
-    keyboard.type(sheet['C'+str(i)].value)
+    keyboard.type(sheet2['K1'].value+'\\'+ sheet['C'+str(i)].value)
     print("going ahead= saved?")
-    subprocess.call("C:\\Users\\DELL\\Desktop\\autoitsave2.exe")
+    subprocess.call(sheet2['K2'].value+"\\autoitsave2.exe")
     print("going ahead=closed")
     eleback = driver.find_element_by_link_text('Modify Query')
     eleback.click()
 
     sheet['F'+str(i)] = "done"
-    wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
+    wb.save('C:\\Users\\DELL\\Desktop\\Final BRC\\seleniumtesting.xlsx')
 
 #sheet['F'+str(i)] = "done"
        
@@ -74,13 +70,13 @@ def fillform(i):
 
 #driver.switch_to_window(windowAfter)
 
-
-for x in range(2, n):
-
-	fillform(x)
-    
-print('done')
-wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
-win32api.MessageBox(0, 'The script was implemented successfully', 'Success')
-driver.close()
-
+if n==2:
+    win32api.MessageBox(0, 'Please enter values in the Excel sheet', 'INVALID')
+    driver.close()
+else:
+    for x in range(2, n):
+        fillform(x)
+    print('done')
+    wb.save('C:\\Users\\DELL\\Desktop\\Final BRC\\seleniumtesting.xlsx')
+    win32api.MessageBox(0, 'The script was implemented successfully', 'Success')
+    driver.close()
