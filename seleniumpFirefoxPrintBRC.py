@@ -18,7 +18,7 @@ print(n)
 
 
 keyboard = Controller()
-driver = webdriver.Firefox(executable_path="C:\\Users\\DELL\\Downloads\\geckodriver-v0.24.0-win64\\geckodriver.exe")
+driver = webdriver.Firefox(executable_path=(sheet2['K3'].value+"\\geckodriver.exe"))
 #driver.get('http://dgftebrc.nic.in:8100/BRCQueryTrade/index.jsp')
 
 
