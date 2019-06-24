@@ -79,7 +79,7 @@ def fillform(i):
     
     subprocess.call(sheet2['K2'].value+"\\autoitPrint.exe")
     print("going ahead")
-    subprocess.call(sheet2['K2'].value+"\\auotitPrint2.exe")
+    subprocess.call(sheet2['K2'].value+"\\autoitPrint2.exe")
     print("going ahead=closed")
 
     
@@ -102,7 +102,6 @@ else:
     for x in range(2, n):
 
 	fillform(x)
-    
     print('done')
     wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
     win32api.MessageBox(0, 'The script was implemented successfully', 'Success')
