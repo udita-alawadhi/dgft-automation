@@ -1,25 +1,26 @@
-#This program is for 
+#This program is for downloading the BRC details document and then, printing it.
 
 import openpyxl, time, easygui, win32api
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 from pynput.keyboard import Key, Controller
 import subprocess
+#make sure to install the above libraries before running the program.
 
 
 wb = openpyxl.load_workbook('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
 sheet = wb['Sheet1']
+sheet2 = wb['Sheet2']
+#location of the excel sheet should be set straight.
 
 row_count = sheet.max_row
 
 n = row_count + 1
 print(n)
-#whattodo = easygui.enterbox("Please choose the valid option: 1- Print documents only. 2- Save As PDF only. 3- Save and Print documents")
-
 
 
 keyboard = Controller()
-driver = webdriver.Firefox(executable_path="C:\\Users\\DELL\\Downloads\\geckodriver-v0.24.0-win64\\geckodriver.exe")
+driver = webdriver.Firefox(executable_path=(sheet2['K3'].value+"\\geckodriver-v0.24.0-win64\\geckodriver.exe"))
 #driver.get('http://dgftebrc.nic.in:8100/BRCQueryTrade/index.jsp')
 
 
@@ -38,8 +39,7 @@ def fillform(i):
     capvar = easygui.enterbox("Enter CAPTCHA code here: ");
     captchaelement.send_keys(capvar)
 
-    pathvalue = sheet["K1"].value
-    print(pathvalue)
+    pathvalue = sheet2["K1"].value
 
 
     driver.find_element_by_xpath("/html/body/form/div/center/table/tbody/tr[7]/td/p/input[1]").click() 
@@ -58,27 +58,14 @@ def fillform(i):
     #windowAfter = driver.window_handles[1]
     #driver.switch_to_window(windowAfter)
 
-    #time.sleep(3)
-
-    #time.sleep(3)
-    #keyboard.press(Key.enter)
-    #keyboard.release(Key.enter)
-
-    #time.sleep(1)
-    #keyboard.press(Key.alt)
-    #keyboard.press(Key.f4)
-    #time.sleep(0.4)
-    #keyboard.release(Key.f4)
-    #keyboard.release(Key.alt)
-
     time.sleep(0.5)
 
-    subprocess.call("C:\\Users\\DELL\\Desktop\\hello.exe")
+    subprocess.call(sheet2['K2'].value+"\\autoitsave.exe")
     print("going ahead")
     keyboard.type(pathvalue+sheet['C'+str(i)].value)
     time.sleep(0.5)
     print("going ahead= saved?")
-    subprocess.call("C:\\Users\\DELL\\Desktop\\hello2.exe")
+    subprocess.call(sheet2['K2'].value+"\\autoitsave2.exe")
     print("going ahead=closed")
 
     try:
@@ -90,15 +77,14 @@ def fillform(i):
         fillform(i)
 
     
-    subprocess.call("C:\\Users\\DELL\\Desktop\\helloPrint.exe")
+    subprocess.call(sheet2['K2'].value+"\\autoitPrint.exe")
     print("going ahead")
-    subprocess.call("C:\\Users\\DELL\\Desktop\\hello2Print.exe")
+    subprocess.call(sheet2['K2'].value+"\\auotitPrint2.exe")
     print("going ahead=closed")
 
     
     eleback = driver.find_element_by_link_text('Modify Query')
     eleback.click()
-    print("what?")
 
     sheet['F'+str(i)] = "done"
     wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
@@ -109,34 +95,16 @@ def fillform(i):
 
 #driver.switch_to_window(windowAfter)
 
-
-#Add an exception or loop where program goes when Internet connection goes off or any error occur------1
-
-#Put an if condition so that the program starts from where it halted the last time and the employee doesn't have to change
-#the Excel sheet again and again ################------ 4 '''
-for x in range(2, n):
+if n==2:
+    win32api.MessageBox(0, 'Please enter values in the Excel sheet', 'INVALID')
+    driver.close()
+else:
+    for x in range(2, n):
 
 	fillform(x)
     
-print('done')
-wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
-win32api.MessageBox(0, 'The script was implemented successfully', 'Success')
-driver.close()
-
-
-################### If the employee suddenly has to break the loop, what does he do? ########## --------- 7
-
-
-
-
-
-
-
-
-#time.sleep(1)
-#keyboard.press(Key.alt)
-#keyboard.press(Key.f4)
-#time.sleep(0.5)
-#keyboard.release(Key.f4)
-#keyboard.release(Key.alt)'''
+    print('done')
+    wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
+    win32api.MessageBox(0, 'The script was implemented successfully', 'Success')
+    driver.close()
 
