@@ -56,13 +56,12 @@ def fillform(i):
     #driver.switch_to_window(windowAfter)
 
     #The file location of all the AutoIT files should be correct with "//" instead of "/"
-    subprocess.call("C:\\Users\\DELL\\Desktop\\helloPrint.exe")
+    subprocess.call("C:\\Users\\DELL\\Desktop\\autoitPrint.exe")
     print("going ahead")
-    subprocess.call("C:\\Users\\DELL\\Desktop\\hello2Print.exe")
+    subprocess.call("C:\\Users\\DELL\\Desktop\\autoitPrint2.exe")
     print("going ahead=closed")
     eleback = driver.find_element_by_link_text('Modify Query')
     eleback.click()
-    print("what?")
 
     sheet['F'+str(i)] = "done"
     wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
