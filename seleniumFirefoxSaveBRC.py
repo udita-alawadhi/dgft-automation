@@ -56,15 +56,14 @@ def fillform(i):
     #driver.switch_to_window(windowAfter)
 	
     #make sure the file location of autoIT's application file are correct.
-    subprocess.call("C:\\Users\\DELL\\Desktop\\hello.exe")
+    subprocess.call("C:\\Users\\DELL\\Desktop\\autoitsave.exe")
     print("going ahead")
     keyboard.type(sheet['C'+str(i)].value)
     print("going ahead= saved?")
-    subprocess.call("C:\\Users\\DELL\\Desktop\\hello2.exe")
+    subprocess.call("C:\\Users\\DELL\\Desktop\\autoitsave2.exe")
     print("going ahead=closed")
     eleback = driver.find_element_by_link_text('Modify Query')
     eleback.click()
-    print("what?")
 
     sheet['F'+str(i)] = "done"
     wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
