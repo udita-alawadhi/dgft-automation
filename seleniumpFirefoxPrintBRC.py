@@ -10,6 +10,7 @@ import subprocess
 
 wb = openpyxl.load_workbook('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
 sheet = wb['Sheet1']
+sheet2 = wb['Sheet2']
 
 row_count = sheet.max_row
 
@@ -56,9 +57,9 @@ def fillform(i):
     #driver.switch_to_window(windowAfter)
 
     #The file location of all the AutoIT files should be correct with "//" instead of "/"
-    subprocess.call("C:\\Users\\DELL\\Desktop\\autoitPrint.exe")
+    subprocess.call(sheet2['K2'].value+"\\autoitPrint.exe")
     print("going ahead")
-    subprocess.call("C:\\Users\\DELL\\Desktop\\autoitPrint2.exe")
+    subprocess.call(sheet2['K2'].value+"\\autoitPrint2.exe")
     print("going ahead=closed")
     eleback = driver.find_element_by_link_text('Modify Query')
     eleback.click()
@@ -72,13 +73,16 @@ def fillform(i):
 
 #driver.switch_to_window(windowAfter)
 
+if n==2:
+    win32api.MessageBox(0, 'Please enter values in the Excel sheet', 'INVALID')
+    driver.close()
+else:
+    for x in range(2, n):
 
-for x in range(2, n):
-
-	fillform(x)
+ 	fillform(x)
     
-print('done')
-wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
-win32api.MessageBox(0, 'The script was implemented successfully', 'Success')
-driver.close()
+    print('done')
+    wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
+    win32api.MessageBox(0, 'The script was implemented successfully', 'Success')
+    driver.close()
 
