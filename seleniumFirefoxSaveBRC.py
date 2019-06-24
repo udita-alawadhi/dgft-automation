@@ -1,21 +1,21 @@
-### This file is for captcha error detection
+###This program is for saving/downloading BRC details from the DGFT website.
 
 import openpyxl, time, easygui, win32api
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 from pynput.keyboard import Key, Controller
 import subprocess
+#these libraries need to be installed before running the program
 
 
 wb = openpyxl.load_workbook('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
 sheet = wb['Sheet1']
+#location of the file 'seleniumtesting.xlsx' should be maintained correctly with "//" instead of single "/"
 
 row_count = sheet.max_row
 
 n = row_count + 1
 print(n)
-#whattodo = easygui.enterbox("Please choose the valid option: 1- Print documents only. 2- Save As PDF only. 3- Save and Print documents")
-
 
 
 keyboard = Controller()
@@ -54,22 +54,8 @@ def fillform(i):
 
     #windowAfter = driver.window_handles[1]
     #driver.switch_to_window(windowAfter)
-
-    #time.sleep(3)
-
-    #time.sleep(3)
-    #keyboard.press(Key.enter)
-    #keyboard.release(Key.enter)
-
-    #time.sleep(1)
-    #keyboard.press(Key.alt)
-    #keyboard.press(Key.f4)
-    #time.sleep(0.4)
-    #keyboard.release(Key.f4)
-    #keyboard.release(Key.alt)
-
-    #time.sleep(0.5)
-
+	
+    #make sure the file location of autoIT's application file are correct.
     subprocess.call("C:\\Users\\DELL\\Desktop\\hello.exe")
     print("going ahead")
     keyboard.type(sheet['C'+str(i)].value)
@@ -90,10 +76,6 @@ def fillform(i):
 #driver.switch_to_window(windowAfter)
 
 
-#Add an exception or loop where program goes when Internet connection goes off or any error occur------1
-
-#Put an if condition so that the program starts from where it halted the last time and the employee doesn't have to change
-#the Excel sheet again and again ################------ 4 '''
 for x in range(2, n):
 
 	fillform(x)
@@ -102,21 +84,4 @@ print('done')
 wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
 win32api.MessageBox(0, 'The script was implemented successfully', 'Success')
 driver.close()
-
-
-################### If the employee suddenly has to break the loop, what does he do? ########## --------- 7
-
-
-
-
-
-
-
-
-#time.sleep(1)
-#keyboard.press(Key.alt)
-#keyboard.press(Key.f4)
-#time.sleep(0.5)
-#keyboard.release(Key.f4)
-#keyboard.release(Key.alt)'''
 
