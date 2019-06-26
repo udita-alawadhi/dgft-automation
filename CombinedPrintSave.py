@@ -8,7 +8,7 @@ import subprocess
 #make sure to install the above libraries before running the program.
 
 
-wb = openpyxl.load_workbook('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
+wb = openpyxl.load_workbook('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')#.......................................Line 11
 sheet = wb['Sheet1']
 sheet2 = wb['Sheet2']
 #location of the excel sheet should be set straight.
@@ -87,7 +87,7 @@ def fillform(i):
     eleback.click()
 
     sheet['F'+str(i)] = "done"
-    wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
+    wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')#...........................................Line 90
 
 #sheet['F'+str(i)] = "done"
        
@@ -95,15 +95,15 @@ def fillform(i):
 
 #driver.switch_to_window(windowAfter)
 
+
 if n==2:
     win32api.MessageBox(0, 'Please enter values in the Excel sheet', 'INVALID')
     driver.close()
 else:
     for x in range(2, n):
-
-	fillform(x)
+        fillform(x)
     print('done')
-    wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')
+    wb.save('C:\\Users\\DELL\\Desktop\\seleniumtesting.xlsx')#..............................................Line 107
     win32api.MessageBox(0, 'The script was implemented successfully', 'Success')
     driver.close()
 
