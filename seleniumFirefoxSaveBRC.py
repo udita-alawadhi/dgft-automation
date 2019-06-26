@@ -6,7 +6,7 @@ from selenium import webdriver
 from pynput.keyboard import Key, Controller
 import subprocess
 
-wb = openpyxl.load_workbook('C:\\Users\\DELL\\Desktop\\Final BRC\\seleniumtesting.xlsx')
+wb = openpyxl.load_workbook('C:\\Users\\DELL\\Desktop\\Final BRC\\seleniumtesting.xlsx')#.................................Line 9
 sheet = wb['Sheet1']
 sheet2 = wb['Sheet2']
 
@@ -62,7 +62,7 @@ def fillform(i):
     eleback.click()
 
     sheet['F'+str(i)] = "done"
-    wb.save('C:\\Users\\DELL\\Desktop\\Final BRC\\seleniumtesting.xlsx')
+    wb.save('C:\\Users\\DELL\\Desktop\\Final BRC\\seleniumtesting.xlsx')#.....................................Line 65
 
 #sheet['F'+str(i)] = "done"
        
@@ -77,6 +77,6 @@ else:
     for x in range(2, n):
         fillform(x)
     print('done')
-    wb.save('C:\\Users\\DELL\\Desktop\\Final BRC\\seleniumtesting.xlsx')
+    wb.save('C:\\Users\\DELL\\Desktop\\Final BRC\\seleniumtesting.xlsx')#.....................................Line 80
     win32api.MessageBox(0, 'The script was implemented successfully', 'Success')
     driver.close()
